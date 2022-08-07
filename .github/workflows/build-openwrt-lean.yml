@@ -11,11 +11,11 @@ name: Build OpenWrt PSG1218A
 
 on:
   repository_dispatch:
-#  release:
-#    types: published
-#  push:
-#    branches:
-#      - master
+ release:
+   types: published
+ push:
+   branches:
+     - main
 #    paths:
 #      - '.config'
   schedule:
@@ -160,7 +160,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.LEO_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}    
         body_path: release.txt
