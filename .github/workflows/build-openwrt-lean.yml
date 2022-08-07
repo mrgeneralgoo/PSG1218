@@ -1,21 +1,13 @@
-#=================================================
 # https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# env：false @ ture
-# Author: P3TERX
-# Blog: https://p3terx.com
-#=================================================
-
-name: Build OpenWrt PSG1218A
+# Description: Build OpenWrt using GitHub Actionsname: Build OpenWrt PSG1218A
 
 on:
   repository_dispatch:
- release:
-   types: published
- push:
-   branches:
-     - main
+#  release:
+#    types: published
+#  push:
+#    branches:
+#      - main
 #    paths:
 #      - '.config'
   schedule:
@@ -24,7 +16,7 @@ on:
 #   - cron: 0 8 */3 * *
 #  watch:
 #    types: started
-
+ 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
