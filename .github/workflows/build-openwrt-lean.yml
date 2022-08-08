@@ -22,7 +22,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
-  DIY_SH: diy.sh
+  HANDLE_CONFIGS: handle_configs.sh
+  HANDLE_FEEDS: handle_feeds.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -53,16 +54,23 @@ jobs:
     - name: Clone source code
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
+    - name: Load custom feeds
+      run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        chmod +x $HANDLE_FEEDS
+        cd openwrt
+        ../$HANDLE_FEEDS
+
     - name: Load base environment
-      run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a && ./scripts/feeds install -a
+      run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a
 
     - name: Load custom config
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_SH
+        chmod +x $HANDLE_CONFIGS
         cd openwrt
-        ../$DIY_SH
+        ../$HANDLE_CONFIGS
 
     - name: Download package
       id: package
