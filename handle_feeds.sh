@@ -15,3 +15,6 @@
 # Add a feed source
 sed -i "/helloworld/d" "feeds.conf.default"
 echo "src-git helloworld https://github.com/fw876/helloworld.git" >> feeds.conf.default
+
+sed -i "/lienol/d" "feeds.conf.default"
+ echo "src-git lienol https://github.com/Lienol/openwrt-package.git" >> feeds.conf.default
