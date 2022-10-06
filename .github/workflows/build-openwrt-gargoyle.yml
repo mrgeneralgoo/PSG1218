@@ -7,8 +7,8 @@ on:
       - main
     paths:
       - 'handle_gargoyle_configs.sh'
-    schedule:
-      - cron: 0 0 1 * *
+  schedule:
+    - cron: 0 0 1 * *
 
 env:
   REPO_URL: https://github.com/ericpaulbishop/gargoyle.git
