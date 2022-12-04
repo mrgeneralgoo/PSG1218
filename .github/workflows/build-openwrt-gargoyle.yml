@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'handle_gargoyle_configs.sh'
+    # paths:
+    #   - 'handle_gargoyle_configs.sh'
   schedule:
     - cron: 0 0 1 * *
 
@@ -20,7 +20,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout
@@ -32,7 +32,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo npm nodejs
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004) file npm nodejs
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
