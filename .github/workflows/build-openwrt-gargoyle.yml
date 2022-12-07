@@ -12,7 +12,7 @@ on:
 
 env:
   REPO_URL: https://github.com/ericpaulbishop/gargoyle.git
-  REPO_BRANCH: master
+  REPO_BRANCH: base_on_openwrt_2102
   HANDLE_CONFIGS: handle_gargoyle_configs.sh
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
